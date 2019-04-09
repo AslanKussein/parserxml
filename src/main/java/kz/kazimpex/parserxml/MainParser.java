@@ -1,5 +1,10 @@
 package kz.kazimpex.parserxml;
 
+import kz.kazimpex.parserxml.jpa.domain.TDocumentRoot;
+import kz.kazimpex.parserxml.jpa.repository.TDocumentRootRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -10,7 +15,11 @@ import java.io.File;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
 
-public class MainParser {
+@Service
+public class MainParser{
+
+    @Autowired
+    TDocumentRootRepository tDocumentRootRepository;
 
     private static String getValueByName(Element root, String value) throws Exception {
         if (!isNullOrEmpty(value)) {
@@ -32,18 +41,33 @@ public class MainParser {
         throw new Exception("Пустой value");
     }
 
-    public static void main(String[] args) throws Exception {
+    /***
+     * @desc сохраняем root тег;
+     * @param root;
+     */
+    private void insertRoot(Element root) throws Exception {
+        TDocumentRoot tDocumentRoot = new TDocumentRoot();
+        tDocumentRoot.setId(getValueByName(root, "id"));
+        tDocumentRoot.setDoctypeId(getValueByName(root, "doctype_id"));
+        tDocumentRoot.setRedactionId(getValueByName(root, "redaction_id"));
+        tDocumentRootRepository.save(tDocumentRoot);
+    }
+
+    @Transactional
+    public void run() throws Exception {
+
+
+        String path = "C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Внутренний документ\\c78dcb38-5b95-49e6-bb1e-5a9006f00076.xml";
+
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
-        Document document = db.parse(new File("xml/1.xml"));
+        Document document = db.parse(new File(path));
 
-        String id, redactionId, doctypeId;
 
         Element root = document.getDocumentElement();
-        //TODO создаем root элемент
-        id = getValueByName(root, "id");
-        redactionId = getValueByName(root, "redaction_id");
-        doctypeId = getValueByName(root, "doctype_id");
+
+        insertRoot(root);
+
 
 
         NodeList nodeList = root.getElementsByTagName("item");
@@ -58,20 +82,21 @@ public class MainParser {
             }
             System.out.println(getValueByNameAndIterator(nodeList, x, "name"));
             System.out.println(getValueByNameAndIterator(nodeList, x, "title"));
+            System.out.println(getValueByNameAndIterator(nodeList, x, "type"));
         }
 
-        nodeList = root.getElementsByTagName("itemslist");
-
-        System.out.println(nodeList.getLength());
-
-        for (int x = 0, size = nodeList.getLength(); x < size; x++) {
-            NodeList subList = nodeList.item(x).getChildNodes();
-
-            if (subList != null && subList.item(x) != null) {
-                System.out.println(subList.item(x).getNodeValue());
-            }
-            System.out.println(getValueByNameAndIterator(nodeList, x, "name"));
-            System.out.println(getValueByNameAndIterator(nodeList, x, "title"));
-        }
+//        nodeList = root.getElementsByTagName("itemslist");
+//
+//        System.out.println(nodeList.getLength());
+//
+//        for (int x = 0, size = nodeList.getLength(); x < size; x++) {
+//            NodeList subList = nodeList.item(x).getChildNodes();
+//
+//            if (subList != null && subList.item(x) != null) {
+//                System.out.println(subList.item(x).getNodeValue());
+//            }
+//            System.out.println(getValueByNameAndIterator(nodeList, x, "name"));
+//            System.out.println(getValueByNameAndIterator(nodeList, x, "title"));
+//        }
     }
 }

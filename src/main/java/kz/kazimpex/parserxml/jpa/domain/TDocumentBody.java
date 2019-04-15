@@ -105,7 +105,6 @@ public class TDocumentBody implements Serializable {
     @Column(name = "f_21cf180", columnDefinition = "TEXT")
     private String f_21cf180;
     private String f_0190180;
-    private String f_01692fa;
     private String f_f1a5daf;
     private String f_118f49d;
     private String f_61741ce;
@@ -175,7 +174,6 @@ public class TDocumentBody implements Serializable {
     private Timestamp f_415a350;
     @Column(name = "f_3147dd7", columnDefinition = "TEXT")
     private String f_3147dd7;
-    private String f_6117ead;
     private String f_810be61;
     private String f_e1744a5;
     private String f_21da282;
@@ -183,12 +181,10 @@ public class TDocumentBody implements Serializable {
     private String f_2132dec;
     private String f_41407ad;
     private String f_b1e1137;
-    private String f_b12e0d5;
     private Timestamp f_612d180;
     private String f_b15a02e;
     private String f_61f0b14;
     private String f_8172a0d;
-    private String f_f1d8b64;
     private String f_e1f58c2;
     private String f_91abd5a;
     private String f_a188010;
@@ -205,8 +201,6 @@ public class TDocumentBody implements Serializable {
     private Boolean fNewversion;
     private String f_c11c227;
     private Boolean f_41b04ba;
-    private String f_d1107e3;
-    private String f_f130ae4;
     private String f_615ab98;
     private String f_61e8b2e;
     private String f_a1d098c;

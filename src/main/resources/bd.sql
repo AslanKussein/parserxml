@@ -1,10 +1,5 @@
-create database test;
-create schema docs;
+create schema test_docs;
 
-create table docs.t_document_root
-(
-    id           varchar(222) primary key,
-    redaction_id varchar(222),
-    doctype_id   varchar(222)
-
-);
+INSERT INTO test_docs.d_doc_lang (id, name) VALUES (1, 'Казакша');
+INSERT INTO test_docs.d_doc_lang (id, name) VALUES (2, 'Русский');
+select f_d180879 from test_docs.t_document_body;

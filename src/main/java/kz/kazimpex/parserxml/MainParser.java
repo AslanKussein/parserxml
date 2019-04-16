@@ -2,6 +2,7 @@ package kz.kazimpex.parserxml;
 
 import kz.kazimpex.parserxml.jpa.domain.*;
 import kz.kazimpex.parserxml.jpa.repository.*;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +13,6 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static kz.kazimpex.parserxml.ParseItem.fullBodyItem;
 import static kz.kazimpex.parserxml.ParserItemList.fullBodyItemlist;
 
 @Service
@@ -65,26 +66,79 @@ public class MainParser {
     TFB12e0d5Repository tfb12e0d5Repository;
     @Autowired
     TFF1d8b64Repository tff1d8b64Repository;
+    @Autowired
+    TF21e81a6Repository tf21e81a6Repository;
+    @Autowired
+    TF31dc56bRepository tf31dc56bRepository;
+    @Autowired
+    TF1168c6fRepository tf1168c6fRepository;
+    @Autowired
+    TChildListRepository tChildListRepository;
+    @Autowired
+    TF2130062Repository tf2130062Repository;
+    @Autowired
+    TF0190180Repository tf0190180Repository;
+    @Autowired
+    TF31b92adRepository tf31b92adRepository;
+    @Autowired
+    TF2149883Repository tf2149883Repository;
+    @Autowired
+    TF41830e9Repository tf41830e9Repository;
+    @Autowired
+    TFa1cd4ffRepository tFa1cd4ffRepository;
+    @Autowired
+    TFc13b7f0Repository tFc13b7f0Repository;
+    @Autowired
+    TFd151227Repository tFd151227Repository;
+    @Autowired
+    TF6135ec8Repository tf6135ec8Repository;
+    @Autowired
+    TFc11a6abRepository tFc11a6abRepository;
+    @Autowired
+    TF61fcfd3Repository tf61fcfd3Repository;
+    @Autowired
+    TF61ae463Repository tf61ae463Repository;
+    @Autowired
+    TF519e6cdRepository tf519e6cdRepository;
+    @Autowired
+    TF715a73fRepository tf715a73fRepository;
+    @Autowired
+    TFC1bcdf1Repository tfc1bcdf1Repository;
+    @Autowired
+    TFe158ee0Repository tFe158ee0Repository;
+    @Autowired
+    TFc19311bRepository tFc19311bRepository;
+    @Autowired
+    TFd1970baRepository tFd1970baRepository;
+    @Autowired
+    TF81eed8dRepository tf81eed8dRepository;
+    @Autowired
+    TFb1a3034Repository tFb1a3034Repository;
+    @Autowired
+    TF31fc45fRepository tf31fc45fRepository;
+    @Autowired
+    TF1119b0fRepository tf1119b0fRepository;
+
 
     private static Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
 
-    private Date stringToDate(String str) {
+    public static Date stringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate dateTime = LocalDate.parse(str, formatter);
         return asDate(dateTime);
     }
 
-    private static Date stringToDate2(String str) {
+    public static Date stringToDate2(String str) {
         String pattern = str.length() == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         LocalDate dateTime = LocalDate.parse(str, formatter);
         return asDate(dateTime);
     }
 
-    private static String getValueByName(Element root, String value) throws Exception {
+    public static String getValueByName(Element root, String value) throws Exception {
         if (!isNullOrEmpty(value)) {
             if (root.getAttributes().getNamedItem(value) != null) {
                 return root.getAttributes().getNamedItem(value).getNodeValue();
@@ -94,7 +148,7 @@ public class MainParser {
         throw new Exception("Пустой value");
     }
 
-    private static String getValueByNameAndIterator(NodeList list, int i, String tagName) throws Exception {
+    public static String getValueByNameAndIterator(NodeList list, int i, String tagName) throws Exception {
         if (!isNullOrEmpty(tagName)) {
             if (list.item(i).getAttributes().getNamedItem(tagName) != null) {
                 return list.item(i).getAttributes().getNamedItem(tagName).getNodeValue();
@@ -107,6 +161,13 @@ public class MainParser {
     public static Integer stringToInteger(String val) {
         if (!isNullOrEmpty(val)) {
             return Integer.parseInt(val);
+        }
+        return null;
+    }
+
+    public static Timestamp stringToTimestamp(String nodeValue) {
+        if (!isNullOrEmpty(nodeValue)) {
+            return Timestamp.valueOf(nodeValue);
         }
         return null;
     }
@@ -130,322 +191,6 @@ public class MainParser {
         tDocumentRootRepository.saveAndFlush(tDocumentRoot);
 
         return tDocumentRoot;
-    }
-
-    /**
-     * @desc insert item
-     */
-    private void fullBodyItem(Element element, TDocumentBody body) throws Exception {
-
-        if (element.getAttribute("name").equalsIgnoreCase("created_at")) {
-            if (element.getFirstChild() != null)
-                body.setCreatedAt(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("edited_at")) {
-            if (element.getFirstChild() != null)
-                body.setEditedAt(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("point_title")) {
-            if (element.getFirstChild() != null)
-                body.setPointTitle(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("doctype")) {
-            if (element.getFirstChild() != null)
-                body.setDoctype(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("reg_number")) {
-            if (element.getFirstChild() != null)
-                body.setRegNumber(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("reg_tstamp")) {
-            if (element.getFirstChild() != null)
-                body.setRegTstamp(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("ctr_start_at")) {
-            if (element.getFirstChild() != null)
-                body.setCtrStartAt(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("ctr_stop_at")) {
-            if (element.getFirstChild() != null)
-                body.setCtrStopAt(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("reiterative_id")) {
-            if (element.getFirstChild() != null)
-                body.setReiterativeId(stringToInteger(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("number_of_pages")) {
-            if (element.getFirstChild() != null)
-                body.setNumberOfPages(stringToInteger(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_512be20")) {
-            if (element.getFirstChild() != null)
-                body.setF_512be20(stringToInteger(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_a18b360")) {
-            if (element.getFirstChild() != null)
-                body.setF_a18b360(stringToInteger(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_version_number")) {
-            if (element.getFirstChild() != null)
-                body.setFVersionNumber(stringToInteger(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1821f1")) {
-            if (element.getFirstChild() != null)
-                body.setF_d1821f1(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_619d7c8")) {
-            if (element.getFirstChild() != null)
-                body.setF_619d7c8(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d162acb")) {
-            if (element.getFirstChild() != null)
-                body.setF_d162acb(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_416f97f")) {
-            if (element.getFirstChild() != null)
-                body.setF_416f97f(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_7162598")) {
-            if (element.getFirstChild() != null)
-                body.setF_7162598(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1f5912")) {
-            if (element.getFirstChild() != null)
-                body.setF_d1f5912(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_e16a968")) {
-            if (element.getFirstChild() != null)
-                body.setFE16a968(stringToInteger(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_719abfc")) {
-            if (element.getFirstChild() != null)
-                body.setF_719abfc(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_7190c2a")) {
-            if (element.getFirstChild() != null)
-                body.setF_7190c2a(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_01ef95d")) {
-            if (element.getFirstChild() != null)
-                body.setF_01ef95d(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_5128b2e")) {
-            if (element.getFirstChild() != null)
-                body.setF_5128b2e(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1aab66")) {
-            if (element.getFirstChild() != null)
-                body.setF_d1aab66(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_a19607f")) {
-            if (element.getFirstChild() != null)
-                body.setF_a19607f(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1e4597")) {
-            if (element.getFirstChild() != null)
-                body.setF_d1e4597(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_0120489")) {
-            if (element.getFirstChild() != null)
-                body.setF_0120489(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_813edeb")) {
-            if (element.getFirstChild() != null)
-                body.setF_813edeb(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_91f4590")) {
-            if (element.getFirstChild() != null)
-                body.setF_91f4590(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_512b542")) {
-            if (element.getFirstChild() != null)
-                body.setF_512b542(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_71db8bd")) {
-            if (element.getFirstChild() != null)
-                body.setF_71db8bd(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_e14dda1")) {
-            if (element.getFirstChild() != null)
-                body.setF_e14dda1(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_e132be8")) {
-            if (element.getFirstChild() != null)
-                body.setF_e132be8(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_119a889")) {
-            if (element.getFirstChild() != null)
-                body.setF_119a889(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_31efe17")) {
-            if (element.getFirstChild() != null)
-                body.setF_31efe17(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_61f7ce1")) {
-            if (element.getFirstChild() != null)
-                body.setF_61f7ce1(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_21cf180")) {
-            if (element.getFirstChild() != null)
-                body.setF_21cf180(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_0190180")) {
-            if (element.getFirstChild() != null)
-                body.setF_0190180(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1bb234")) {
-            if (element.getFirstChild() != null)
-                body.setF_a1bb234(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_51601f8")) {
-            if (element.getFirstChild() != null)
-                body.setF_51601f8(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_b1edc6b")) {
-            if (element.getFirstChild() != null)
-                body.setF_b1edc6b(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_41be90d")) {
-            if (element.getFirstChild() != null)
-                body.setF_41be90d(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_218fd6e")) {
-            if (element.getFirstChild() != null)
-                body.setF_218fd6e(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_e11b6ad")) {
-            if (element.getFirstChild() != null)
-                body.setF_e11b6ad(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_b1cbb3e")) {
-            if (element.getFirstChild() != null)
-                body.setF_b1cbb3e(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_0152899")) {
-            if (element.getFirstChild() != null)
-                body.setF_0152899(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_71e61e1")) {
-            if (element.getFirstChild() != null)
-                body.setF_71e61e1(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_611fa3a")) {
-            if (element.getFirstChild() != null)
-                body.setF_611fa3a(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_4181cf3")) {
-            if (element.getFirstChild() != null)
-                body.setF_4181cf3(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_01c3ecb")) {
-            if (element.getFirstChild() != null)
-                body.setF_01c3ecb(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1e51c5")) {
-            if (element.getFirstChild() != null)
-                body.setF_c1e51c5(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_81f195a")) {
-            if (element.getFirstChild() != null)
-                body.setF_81f195a(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1047fd")) {
-            if (element.getFirstChild() != null)
-                body.setF_c1047fd(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_f10aca9")) {
-            if (element.getFirstChild() != null)
-                body.setF_f10aca9(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1b4fda")) {
-            if (element.getFirstChild() != null)
-                body.setF_a1b4fda(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1a323a")) {
-            if (element.getFirstChild() != null)
-                body.setF_d1a323a(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_116a960")) {
-            if (element.getFirstChild() != null)
-                body.setF_116a960(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_018fa0d")) {
-            if (element.getFirstChild() != null)
-                body.setF_018fa0d(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_61a410b")) {
-            if (element.getFirstChild() != null)
-                body.setF_61a410b(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_9148215")) {
-            if (element.getFirstChild() != null)
-                body.setF_9148215(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_f13c5ea")) {
-            if (element.getFirstChild() != null)
-                body.setF_f13c5ea(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_118945d")) {
-            if (element.getFirstChild() != null)
-                body.setF_118945d(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_11a93cc")) {
-            if (element.getFirstChild() != null)
-                body.setF_11a93cc(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_61d605e")) {
-            if (element.getFirstChild() != null)
-                body.setF_61d605e(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_71a5738")) {
-            if (element.getFirstChild() != null)
-                body.setF_71a5738(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_f1faec4")) {
-            if (element.getFirstChild() != null)
-                body.setF_f1faec4(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_a163fd1")) {
-            if (element.getFirstChild() != null)
-                body.setF_a163fd1(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c16ebd5")) {
-            if (element.getFirstChild() != null)
-                body.setF_c16ebd5(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_b15a6e7")) {
-            if (element.getFirstChild() != null)
-                body.setF_b15a6e7(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_e1bd204")) {
-            if (element.getFirstChild() != null)
-                body.setF_e1bd204(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_415a350")) {
-            if (element.getFirstChild() != null)
-                body.setF_415a350(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_3147dd7")) {
-            if (element.getFirstChild() != null)
-                body.setF_3147dd7(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_612d180")) {
-            if (element.getFirstChild() != null)
-                body.setF_612d180(stringToTimestamp(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_e1f58c2")) {
-            if (element.getFirstChild() != null)
-                body.setF_e1f58c2(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_91abd5a")) {
-            if (element.getFirstChild() != null)
-                body.setF_91abd5a(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_title")) {
-            if (element.getFirstChild() != null)
-                body.setFTitle(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c174820")) {
-            if (element.getFirstChild() != null)
-                body.setF_c174820(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_914ea94")) {
-            if (element.getFirstChild() != null)
-                body.setF_914ea94(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_01a1414")) {
-            if (element.getFirstChild() != null)
-                body.setF_01a1414(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_2149494")) {
-            if (element.getFirstChild() != null)
-                body.setF_2149494(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d13b321")) {
-            if (element.getFirstChild() != null)
-                body.setF_d13b321(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_717b3d2")) {
-            if (element.getFirstChild() != null)
-                body.setF_717b3d2(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_511168a")) {
-            if (element.getFirstChild() != null)
-                body.setF_511168a(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c11c227")) {
-            if (element.getFirstChild() != null)
-                body.setF_c11c227(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_11292c6")) {
-            if (element.getFirstChild() != null)
-                body.setF_11292c6(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_71567dc")) {
-            if (element.getFirstChild() != null)
-                body.setF_71567dc(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_61eb5c6")) {
-            if (element.getFirstChild() != null)
-                body.setF_61eb5c6(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_d175b87")) {
-            if (element.getFirstChild() != null)
-                body.setF_d175b87(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_commentnewversion")) {
-            if (element.getFirstChild() != null)
-                body.setFCommentnewversion(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_version")) {
-            if (element.getFirstChild() != null)
-                body.setFVersion(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_version_kz")) {
-            if (element.getFirstChild() != null)
-                body.setFVersionKz(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_short_title")) {
-            if (element.getFirstChild() != null)
-                body.setFShortTitle(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1ebb32")) {
-            if (element.getFirstChild() != null)
-                body.setF_a1ebb32(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_b10f779")) {
-            if (element.getFirstChild() != null)
-                body.setF_b10f779(stringToDate(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_41a4d30")) {
-            if (element.getFirstChild() != null)
-                body.setF_41a4d30(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("number_of_applications")) {
-            if (element.getFirstChild() != null)
-                body.setNumberOfApplications(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1e008c")) {
-            if (element.getFirstChild() != null)
-                body.setF_c1e008c(element.getFirstChild().getNodeValue());
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1b48c8")) {
-            if (element.getFirstChild() != null)
-                body.setF_c1b48c8(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_01d0b5a")) {
-            if (element.getFirstChild() != null)
-                body.setF_01d0b5a(Integer.valueOf(element.getFirstChild().getNodeValue()));
-        } else if (element.getAttribute("name").equalsIgnoreCase("f_b1332ad")) {
-            if (element.getFirstChild() != null)
-                body.setF_b1332ad(element.getFirstChild().getNodeValue());
-        }
-//        else {
-//            if (element.getParentNode().getNodeName().equalsIgnoreCase("document")) {
-//                throw new Exception("парсер добавь item " + element.getAttribute("name"));
-//            }
-//        }
     }
 
     /**
@@ -538,11 +283,39 @@ public class MainParser {
             if (ch != null) {
                 TSignFields signFields = new TSignFields();
                 signFields.setDecisionId(decision.getId());
-                signFields.setItemId(Integer.valueOf(ch.getAttribute("id")));
+
+                if (ch.getAttribute("id").equalsIgnoreCase("outgoing_number")) {
+                    if (ch.getFirstChild() != null)
+                        signFields.setOutgoing_date(ch.getFirstChild().getNodeValue());
+                }
+                if (ch.getAttribute("id").equalsIgnoreCase("outgoing_date")) {
+                    if (ch.getFirstChild() != null)
+                        signFields.setOutgoing_date(ch.getFirstChild().getNodeValue());
+                }
+                if (ch.getAttribute("id").equalsIgnoreCase("short_content")) {
+                    if (ch.getFirstChild() != null)
+                        signFields.setShort_content(ch.getFirstChild().getNodeValue());
+                }
                 if (ch.getFirstChild() != null)
                     signFields.setValue(ch.getFirstChild().getNodeValue());
 
                 tSignFieldsRepository.saveAndFlush(signFields);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc childslist;
+     */
+    private void fullbodyChildList(Element element, TDocumentBody body) throws Exception {
+        if (element.getFirstChild() != null && element.getFirstChild().getNodeValue() != null) {
+            for (String s : element.getFirstChild().getNodeValue().split(",")) {
+                TChildList tStructure = new TChildList();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(s);
+                tChildListRepository.saveAndFlush(tStructure);
             }
         }
     }
@@ -589,30 +362,26 @@ public class MainParser {
         }
     }
 
-    private Timestamp stringToTimestamp(String nodeValue) {
-        if (!isNullOrEmpty(nodeValue)) {
-            return Timestamp.valueOf(nodeValue);
-        }
-        return null;
-    }
 
     @Transactional(rollbackFor = Exception.class)
     public void run() throws Exception {
 //        String path = "c78dcb38-5b95-49e6-bb1e-5a9006f00076.xml";
 
-        File folder = new File("C:\\\\Users\\\\a.kusein\\\\Desktop\\\\xml_2018_February\\\\Внутренний документ\\\\");
+//        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Исходящий документ\\");
+        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Исходящий документ\\");
 //        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\test\\\\");
         File[] listOfFiles = folder.listFiles();
-
+        var k = 0;
         assert listOfFiles != null;
         for (File file : listOfFiles) {
-            parseData(file);
+            k += 1;
+            parseData(file, k);
         }
     }
 
-    private void parseData(File file) throws Exception {
+    private void parseData(File file, int l) throws Exception {
         if (file.isFile()) {
-            System.out.println(file.getName());
+            System.out.println(l + " " + file.getName());
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document document = db.parse(file);
@@ -654,6 +423,17 @@ public class MainParser {
                 Element element = (Element) nodeList.item(i);
                 if (!element.getNodeName().equalsIgnoreCase("document")) {
                     if (!element.getAttribute("name").equalsIgnoreCase("title")) {
+                        if (element.getNodeName().equalsIgnoreCase("childslist")) {
+                            fullbodyChildList(element, body);
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Element element = (Element) nodeList.item(i);
+                if (!element.getNodeName().equalsIgnoreCase("document")) {
+                    if (!element.getAttribute("name").equalsIgnoreCase("title")) {
                         if (element.getNodeName().equalsIgnoreCase("itemslist")) {
                             if (element.getAttribute("name").equalsIgnoreCase("f_b1fab9a")) {
                                 insertStructure(element, body);
@@ -683,8 +463,58 @@ public class MainParser {
                                 insertTF01692fa(element, body);
                             } else if (element.getAttribute("name").equalsIgnoreCase("f_b12e0d5")) {
                                 insertTFB12e0d5(element, body);
-                            }else if (element.getAttribute("name").equalsIgnoreCase("f_f1d8b64")) {
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_f1d8b64")) {
                                 insertTFF1d8b64(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_31dc56b")) {
+                                insertTF31dc56b(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_21e81a6")) {
+                                insertTF21e81a6(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_1168c6f")) {
+                                insertTF1168c6f(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_2130062")) {
+                                insertTF2130062(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_0190180")) {
+                                insertTF0190180(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_31b92ad")) {
+                                insertTF31b92ad(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_2149883")) {
+                                insertTF2149883(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_41830e9")) {
+                                insertTF41830e9(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_a1cd4ff")) {
+                                insertTFa1cd4ff(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c13b7f0")) {
+                                insertTFc13b7f0(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_d151227")) {
+                                insertTFd151227(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_6135ec8")) {
+                                insertTF6135ec8(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c11a6ab")) {
+                                insertTFc11a6ab(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_61fcfd3")) {
+                                insertTF61fcfd3(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_61ae463")) {
+                                insertTF61ae463(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_519e6cd")) {
+                                insertTF519e6cd(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_715a73f")) {
+                                insertTF715a73f(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c1bcdf1")) {
+                                insertTFC1bcdf1(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_e158ee0")) {
+                                insertTFe158ee0(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c19311b")) {
+                                insertTFc19311b(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_d1970ba")) {
+                                insertTFd1970ba(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_81eed8d")) {
+                                insertTF81eed8d(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_b1a3034")) {
+                                insertTFb1a3034(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_31fc45f")) {
+                                insertTF31fc45f(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_1119b0f")) {
+                                insertTF1119b0f(element, body);
                             }
                         }
                     }
@@ -694,12 +524,485 @@ public class MainParser {
     }
 
 
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_1119b0f;
+     */
+    private void insertTF1119b0f(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF1119b0f tStructure = new TF1119b0f();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf1119b0fRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
 
     /**
-     * f_f1d8b64;
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_31fc45f;
+     */
+    private void insertTF31fc45f(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF31fc45f tStructure = new TF31fc45f();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf31fc45fRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_b1a3034;
+     */
+    private void insertTFb1a3034(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFb1a3034 tStructure = new TFb1a3034();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFb1a3034Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_81eed8d;
+     */
+    private void insertTF81eed8d(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF81eed8d tStructure = new TF81eed8d();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf81eed8dRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_d1970ba;
+     */
+    private void insertTFd1970ba(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFd1970ba tStructure = new TFd1970ba();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFd1970baRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c19311b;
+     */
+    private void insertTFc19311b(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFc19311b tStructure = new TFc19311b();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFc19311bRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_e158ee0;
+     */
+    private void insertTFe158ee0(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFe158ee0 tStructure = new TFe158ee0();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFe158ee0Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c1bcdf1;
+     */
+    private void insertTFC1bcdf1(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFC1bcdf1 tStructure = new TFC1bcdf1();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfc1bcdf1Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_715a73f;
+     */
+    private void insertTF715a73f(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF715a73f tStructure = new TF715a73f();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf715a73fRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_519e6cd;
+     */
+    private void insertTF519e6cd(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF519e6cd tStructure = new TF519e6cd();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf519e6cdRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_61ae463;
+     */
+    private void insertTF61ae463(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF61ae463 tStructure = new TF61ae463();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf61ae463Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_61fcfd3;
+     */
+    private void insertTF61fcfd3(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF61fcfd3 tStructure = new TF61fcfd3();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf61fcfd3Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c11a6ab;
+     */
+    private void insertTFc11a6ab(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFc11a6ab tStructure = new TFc11a6ab();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFc11a6abRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_6135ec8;
+     */
+    private void insertTF6135ec8(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF6135ec8 tStructure = new TF6135ec8();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf6135ec8Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_d151227;
+     */
+    private void insertTFd151227(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFd151227 tStructure = new TFd151227();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFd151227Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c13b7f0;
+     */
+    private void insertTFc13b7f0(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFc13b7f0 tStructure = new TFc13b7f0();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFc13b7f0Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_a1cd4ff;
+     */
+    private void insertTFa1cd4ff(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TFa1cd4ff tStructure = new TFa1cd4ff();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tFa1cd4ffRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_41830e9;
+     */
+    private void insertTF41830e9(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF41830e9 tStructure = new TF41830e9();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf41830e9Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_2149883;
+     */
+    private void insertTF2149883(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF2149883 tStructure = new TF2149883();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf2149883Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_31b92ad;
+     */
+    private void insertTF31b92ad(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF31b92ad tStructure = new TF31b92ad();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf31b92adRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_0190180;
+     */
+    private void insertTF0190180(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF0190180 tStructure = new TF0190180();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf0190180Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_2130062;
+     */
+    private void insertTF2130062(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF2130062 tStructure = new TF2130062();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf2130062Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_f1d8b64;
+     */
+    private void insertTF1168c6f(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF1168c6f tStructure = new TF1168c6f();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf1168c6fRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_f1d8b64;
+     */
+    private void insertTF21e81a6(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF21e81a6 tStructure = new TF21e81a6();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf21e81a6Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_f1d8b64;
+     */
+    private void insertTF31dc56b(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF31dc56b tStructure = new TF31dc56b();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf31dc56bRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_f1d8b64;
      */
     private void insertTFF1d8b64(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -716,10 +1019,9 @@ public class MainParser {
     }
 
     /**
-     * f_b12e0d5;
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_b12e0d5;
      */
     private void insertTFB12e0d5(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -736,10 +1038,9 @@ public class MainParser {
     }
 
     /**
-     * f_b1fab9a;
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_b1fab9a;
      */
     private void insertStructure(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -756,10 +1057,9 @@ public class MainParser {
     }
 
     /**
-     * f_31f8f7c
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_31f8f7c;
      */
     private void insertF_31f8f7c(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -776,10 +1076,9 @@ public class MainParser {
     }
 
     /**
-     * F_519145b
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc F_519145b;
      */
     private void insertTF519145b(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -796,10 +1095,9 @@ public class MainParser {
     }
 
     /**
-     * f_d1c5f7d
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_d1c5f7d;
      */
     private void insertTf_d1c5f7d(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -816,10 +1114,9 @@ public class MainParser {
     }
 
     /**
-     * f_2190030
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_2190030;
      */
     private void insertTf_2190030(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -836,10 +1133,9 @@ public class MainParser {
     }
 
     /**
-     * f_d1193e2
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_d1193e2;
      */
     private void insertT_F_D1193e2(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -856,10 +1152,9 @@ public class MainParser {
     }
 
     /**
-     * f_215b2e9
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_215b2e9;
      */
     private void insertTF215b2e9(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -876,10 +1171,9 @@ public class MainParser {
     }
 
     /**
-     * f_11d6328
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_11d6328;
      */
     private void insertTf_11d6328(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -897,10 +1191,9 @@ public class MainParser {
 
 
     /**
-     * f_d180879
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_d180879;
      */
     private void insertTf_d180879(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -917,10 +1210,9 @@ public class MainParser {
     }
 
     /**
-     * f_6117ead
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_6117ead;
      */
     private void insertTF6117ead(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -937,10 +1229,9 @@ public class MainParser {
     }
 
     /**
-     * f_d1107e3
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_d1107e3;
      */
     private void insertTFD1107e3(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -957,10 +1248,9 @@ public class MainParser {
     }
 
     /**
-     * f_f130ae4
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_f130ae4;
      */
     private void insertTFF130ae4(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();
@@ -978,10 +1268,9 @@ public class MainParser {
 
 
     /**
-     * f_01692fa
-     *
-     * @param element
-     * @param body
+     * @param element;
+     * @param body;
+     * @desc f_01692fa;
      */
     private void insertTF01692fa(Element element, TDocumentBody body) {
         NodeList list = element.getChildNodes();

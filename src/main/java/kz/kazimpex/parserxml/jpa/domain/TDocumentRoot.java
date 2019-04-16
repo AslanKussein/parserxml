@@ -17,6 +17,7 @@ public class TDocumentRoot implements Serializable {
     private String xmlId;
     private String redactionId;
     private String doctypeId;
+    @Column(name = "title", columnDefinition = "TEXT")
     private String title;
 
     public TDocumentRoot() {

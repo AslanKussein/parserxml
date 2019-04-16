@@ -10,14 +10,14 @@ import java.math.BigDecimal;
 /**
  * Created by IntelliJ IDEA.
  * User: a.kusein
- * Date: 10.04.2019
- * Time: 17:54
+ * Date: 16.04.2019
+ * Time: 10:52
  * To change this template use File | Settings | File and Code Templates.
  */
 @Entity
 @Data
-@Table(name = "t_sign_fields", schema = "test_docs")
-public class TSignFields implements Serializable {
+@Table(name = "T_F_0190180", schema = "test_docs")
+public class TF0190180 implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,15 +25,13 @@ public class TSignFields implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "decision_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK$TDecision"))
-    private Long decisionId;
-    private Integer itemId;
-    private String value;
-    private String outgoing_number;
-    private String outgoing_date;
-    private String short_content;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "t_document_body_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK$T_F_0190180"), nullable = false)
+    private TDocumentBody tDocumentBody;
+    private String structureId;
+    @Column(name = "structure_Value", columnDefinition = "TEXT")
+    private String structureValue;
 
-    public TSignFields() {
+    public TF0190180() {
     }
 }

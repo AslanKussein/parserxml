@@ -368,7 +368,7 @@ public class MainParser {
 //        String path = "c78dcb38-5b95-49e6-bb1e-5a9006f00076.xml";
 
 //        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Исходящий документ\\");
-        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Исходящий документ\\");
+        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Входящий документ\\");
 //        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\test\\\\");
         File[] listOfFiles = folder.listFiles();
         var k = 0;

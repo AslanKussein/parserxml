@@ -133,19 +133,9 @@ public class ParserItemList {
                 body.setF_f1a5daf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
             }
         } else if (element.getAttribute("name").equalsIgnoreCase("f_118f49d")) {
-            if (element.getFirstChild() != null) {
-                if (element.getChildNodes().getLength() > 1) {
-                    throw new Exception(element.getAttribute("name"));
-                }
-                body.setF_118f49d(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
-            }
+
         } else if (element.getAttribute("name").equalsIgnoreCase("f_61741ce")) {
-            if (element.getFirstChild() != null) {
-                if (element.getChildNodes().getLength() > 1) {
-                    throw new Exception(element.getAttribute("name"));
-                }
-                body.setF_61741ce(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
-            }
+
         } else if (element.getAttribute("name").equalsIgnoreCase("f_61de7d0")) {
             if (element.getFirstChild() != null) {
                 if (element.getChildNodes().getLength() > 1) {
@@ -1065,14 +1055,14 @@ public class ParserItemList {
                 }
                 body.setF_b17d60e(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
             }
-        }else if (element.getAttribute("name").equalsIgnoreCase("f_e15602a")) {
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e15602a")) {
             if (element.getFirstChild() != null) {
                 if (element.getChildNodes().getLength() > 1) {
                     throw new Exception(element.getAttribute("name"));
                 }
                 body.setF_e15602a(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
             }
-        }else if (element.getAttribute("name").equalsIgnoreCase("f_c1f1ba4")) {
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1f1ba4")) {
             if (element.getFirstChild() != null) {
                 if (element.getChildNodes().getLength() > 1) {
                     throw new Exception(element.getAttribute("name"));
@@ -1086,7 +1076,383 @@ public class ParserItemList {
                 }
                 body.setF_f192968(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
             }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_615c66e")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_615c66e(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1f84f6")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_c1f84f6(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1fb220")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_d1fb220(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e1c4e15")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e1c4e15(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_115ad81")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_115ad81(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_01a24fd")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_01a24fd(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_311ce64")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_311ce64(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f1e62a4")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_f1e62a4(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_81354da")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_81354da(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_b17e536")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_b17e536(Boolean.valueOf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue()));
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_71d0034")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_71d0034(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f1a8493")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_f1a8493(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_0128c2b")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_0128c2b(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_617684e")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_617684e(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_91206cf")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_91206cf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_0117892")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_0117892(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_5160d55")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_5160d55(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f190f6d")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_f190f6d(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_91731bb")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_91731bb(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_b1b9b6b")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_b1b9b6b(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_31db8dd")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_31db8dd(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e13283f")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e13283f(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_6132ec7")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_6132ec7(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_91a65e5")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_91a65e5(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1e9947")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_a1e9947(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_317e523")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_317e523(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1235e8")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_a1235e8(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f12af48")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_f12af48(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e1ea714")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e1ea714(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f1134c2")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_f1134c2(Boolean.valueOf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue()));
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_d12082e")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_d12082e(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_4197d8d")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_4197d8d(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1094d9")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_a1094d9(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_217c7c3")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_217c7c3(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_71ccc4e")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_71ccc4e(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_41d6e17")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_41d6e17(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e18f97f")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e18f97f(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_91b1931")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_91b1931(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_5117f9f")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_5117f9f(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_61a74c9")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_61a74c9(Boolean.valueOf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue()));
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_51ffc18")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_51ffc18(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_9143a8b")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_9143a8b(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_21961d1")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_21961d1(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_61d7da1")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_61d7da1(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_912bdc9")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_912bdc9(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_913edef")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_913edef(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e19c908")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+//                body.setF_e13283f(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e178960")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+//                body.setF_e13283f(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_01f4217")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e134017")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e1f4c72")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1a5f64")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_31e6165")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_017ea0e")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1bbbd0")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1b334d")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_81e7ece")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a17ec5c")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_41ae2b2")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f17ee32")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_fiostructure")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_2155892")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_1143df2")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1ffcfd")) {
+
         } else if (element.getAttribute("name").equalsIgnoreCase("f_1119b0f")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1f8a37")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c12cfac")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1b73a8")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_112b79c")) {
 
         } else if (element.getAttribute("name").equalsIgnoreCase("f_31fc45f")) {
 
@@ -1160,6 +1526,10 @@ public class ParserItemList {
 
         } else if (element.getAttribute("name").equalsIgnoreCase("f_519e6cd")) {
 
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_41da707")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f1669da")) {
+
         } else if (element.getAttribute("name").equalsIgnoreCase("f_81cee9e")) {
             if (element.getFirstChild() != null) {
                 if (element.getChildNodes().getLength() > 1) {
@@ -1167,9 +1537,53 @@ public class ParserItemList {
                 }
                 body.setF_81cee9e(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
             }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_01203db")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_01203db(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e15082a")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e15082a(Integer.valueOf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue()));
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_415c2a6")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_415c2a6(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_51c600b")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_51c600b(Integer.valueOf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue()));
+            }
         } else if (element.getAttribute("name").equalsIgnoreCase("f_715a73f")) {
 
         } else if (element.getAttribute("name").equalsIgnoreCase("f_c1bcdf1")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1d356e")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_516d040")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_41dee64")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_51dcb50")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_b12220b")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_415a5b5")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e18f309")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_11ef657")) {
 
         } else if (element.getAttribute("name").equalsIgnoreCase("reiterative_document")) {
             if (element.getFirstChild() != null) {
@@ -1178,7 +1592,211 @@ public class ParserItemList {
                 }
                 throw new Exception("reiterative_document");
             }
+        }else if (element.getAttribute("name").equalsIgnoreCase("f_110ed59")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_110ed59");
+            }
+        }else if (element.getAttribute("name").equalsIgnoreCase("f_816fe90")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_816fe90");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c155839")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_c155839");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_418ba99")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_01594b0")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_01594b0");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_2128263")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_2128263");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a1dbf4c")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_a1dbf4c");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e14fb61")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_018d364")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_018d364");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_f1e71c9")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_f1e71c9");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_61beb7b")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_61beb7b");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_11ef657")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_11ef657");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a176820")) {
+
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_b12220b")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_b12220b");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_215f036")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_215f036");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_6197961")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_6197961");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_d16e334")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_d16e334");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_81f72f2")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_81f72f2");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_21fe761")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_21fe761");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_8129487")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_8129487");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_2182f2f")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_2182f2f");
+            }
 //                body.setReiterativeDocument(element.getFirstChild().getNodeValue());
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_a176f67")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_a176f67");
+            }
+//                body.setReiterativeDocument(element.getFirstChild().getNodeValue());
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1135be")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_c1135be");
+            }
+//                body.setReiterativeDocument(element.getFirstChild().getNodeValue());
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_c1a4c4f")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_c1a4c4f");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_51d32eb")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_51d32eb");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_d1e541f")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_d1e541f");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e19a029")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e19a029(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue());
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_e1845ba")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                body.setF_e1845ba(Boolean.valueOf(element.getFirstChild().getAttributes().getNamedItem("id").getNodeValue()));
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_91b2d49")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_91b2d49");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_31b9072")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_31b9072");
+            }
+        } else if (element.getAttribute("name").equalsIgnoreCase("f_1167ce8")) {
+            if (element.getFirstChild() != null) {
+                if (element.getChildNodes().getLength() > 1) {
+                    throw new Exception(element.getAttribute("name"));
+                }
+                throw new Exception("f_1167ce8");
+            }
         } else {
             if (element.getParentNode().getNodeName().equalsIgnoreCase("document")) {
                 throw new Exception("парсер добавь itemlist " + element.getAttribute("name"));

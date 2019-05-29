@@ -5,7 +5,6 @@ import kz.kazimpex.parserxml.jpa.repository.*;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -118,12 +117,72 @@ public class MainParser {
     TF31fc45fRepository tf31fc45fRepository;
     @Autowired
     TF1119b0fRepository tf1119b0fRepository;
-
+    @Autowired
+    TF41da707Repository tf41da707Repository;
+    @Autowired
+    Tff1669daRepository tff1669daRepository;
+    @Autowired
+    Tf118f49dRepository tf118f49dRepository;
+    @Autowired
+    TF61741ceRepository tf61741ceRepository;
+    @Autowired
+    Tf112b79cRepository tf112b79cRepository;
+    @Autowired
+    Tfa1b73a8Repository tfa1b73a8Repository;
+    @Autowired
+    Tfd1f8a37Repository tfd1f8a37Repository;
+    @Autowired
+    Tfc12cfacRepository tfc12cfacRepository;
+    @Autowired
+    Tf31e6165Repository tf31e6165Repository;
+    @Autowired
+    Tfd1ffcfdRepository tfd1ffcfdRepository;
+    @Autowired
+    Tf1143df2Repository tf1143df2Repository;
+    @Autowired
+    Tf2155892Repository tf2155892Repository;
+    @Autowired
+    Tfc1b334dRepository tfc1b334dRepository;
+    @Autowired
+    Tfa17ec5cRepository tfa17ec5cRepository;
+    @Autowired
+    TffiostructureRepository tffiostructureRepository;
+    @Autowired
+    Tff17ee32Repository tff17ee32Repository;
+    @Autowired
+    Tf81e7eceRepository tf81e7eceRepository;
+    @Autowired
+    Tf41ae2b2Repository tf41ae2b2Repository;
+    @Autowired
+    Tf01f4217Repository tf01f4217Repository;
+    @Autowired
+    Tfc1a5f64Repository tfc1a5f64Repository;
+    @Autowired
+    Tfe1f4c72Repository tfe1f4c72Repository;
+    @Autowired
+    Tfe134017Repository tfe134017Repository;
+    @Autowired
+    Tf017ea0eRepository tf017ea0eRepository;
+    @Autowired
+    Tfa1bbbd0Repository tfa1bbbd0Repository;
+    @Autowired
+    Tfc1d356eRepository tfc1d356eRepository;
+    @Autowired
+    Tf_516d040Repository tf_516d040Repository;
+    @Autowired
+    Tf_41dee64Repository tf_41dee64Repository;
+    @Autowired
+    Tf_51dcb50Repository tf_51dcb50Repository;
+    @Autowired
+    Tf_b12220bRepository tf_b12220bRepository;
+    @Autowired
+    Tf_415a5b5Repository tf_415a5b5Repository;
+    @Autowired
+    Tf_e18f309Repository tf_e18f309Repository;
 
     private static Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
-
 
     public static Date stringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -362,13 +421,13 @@ public class MainParser {
         }
     }
 
-
-    @Transactional(rollbackFor = Exception.class)
+    //    @Transactional(rollbackFor = Exception.class)
     public void run() throws Exception {
 //        String path = "c78dcb38-5b95-49e6-bb1e-5a9006f00076.xml";
 
 //        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Исходящий документ\\");
-        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Входящий документ\\");
+//        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Обращения юридических лиц");
+        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\Исходящий документ");
 //        File folder = new File("C:\\Users\\a.kusein\\Desktop\\xml_2018_February\\test\\\\");
         File[] listOfFiles = folder.listFiles();
         var k = 0;
@@ -377,6 +436,7 @@ public class MainParser {
             k += 1;
             parseData(file, k);
         }
+        System.out.println("done");
     }
 
     private void parseData(File file, int l) throws Exception {
@@ -385,6 +445,11 @@ public class MainParser {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document document = db.parse(file);
+            TDocumentRoot root2 = tDocumentRootRepository.findByXmlId(file.getName().replace(".xml", ""));
+            if (root2 != null) {
+                return;
+            }
+
 
             Element root = document.getDocumentElement();
 
@@ -515,6 +580,78 @@ public class MainParser {
                                 insertTF31fc45f(element, body);
                             } else if (element.getAttribute("name").equalsIgnoreCase("f_1119b0f")) {
                                 insertTF1119b0f(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_41da707")) {
+                                insertTF41da707(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_f1669da")) {
+                                insertTff1669da(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_118f49d")) {
+                                insertTf118f49d(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_61741ce")) {
+                                insertTF61741ce(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_112b79c")) {
+                                insertTf112b79c(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_a1b73a8")) {
+                                insertTfa1b73a8(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_d1f8a37")) {
+                                insertTfd1f8a37(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c12cfac")) {
+                                insertTfc12cfac(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_31e6165")) {
+                                insertTf31e6165(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_d1ffcfd")) {
+                                insertTfd1ffcfd(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_1143df2")) {
+                                insertTf1143df2(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_2155892")) {
+                                insertTf2155892(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c1b334d")) {
+                                insertTfc1b334d(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_a17ec5c")) {
+                                insertTfa17ec5c(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_fiostructure")) {
+                                insertTffiostructure(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_f17ee32")) {
+                                insertTff17ee32(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_81e7ece")) {
+                                insertTf81e7ece(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_41ae2b2")) {
+                                insertTf41ae2b2(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_01f4217")) {
+                                insertTf01f4217(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_01f4217")) {
+                                insertTfc1a5f64(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c1a5f64")) {
+                                insertTfc1a5f64(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_e1f4c72")) {
+                                insertTfe1f4c72(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_e134017")) {
+                                insertTfe134017(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_017ea0e")) {
+                                insertTf017ea0e(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_a1bbbd0")) {
+                                insertTfa1bbbd0(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_c1d356e")) {
+                                insertTfc1d356e(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_516d040")) {
+                                insertTf_516d040(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_41dee64")) {
+                                insertTf_41dee64(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_51dcb50")) {
+                                insertTf_51dcb50(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_b12220b")) {
+                                insertTf_b12220b(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_415a5b5")) {
+                                insertTf_415a5b5(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_e18f309")) {
+                                insertTf_e18f309(element, body);
+                            } else if (element.getAttribute("name").equalsIgnoreCase("f_418ba99")) {
+                                insertTf_418ba99(element, body);
+                            }else if (element.getAttribute("name").equalsIgnoreCase("f_e14fb61")) {
+                                insertTf_e14fb61(element, body);
+                            }else if (element.getAttribute("name").equalsIgnoreCase("f_a176820")) {
+                                insertTf_a176820(element, body);
+                            }else if (element.getAttribute("name").equalsIgnoreCase("f_11ef657")) {
+                                insertTf_11ef657(element, body);
                             }
                         }
                     }
@@ -523,6 +660,679 @@ public class MainParser {
         }
     }
 
+    @Autowired
+    Tf_418ba99Repository tf_418ba99Repository;
+    @Autowired
+    Tf_e14fb61Repository tf_e14fb61Repository;
+    @Autowired
+    Tf_a176820Repository tf_a176820Repository;
+    @Autowired
+    Tf_11ef657Repository tf_11ef657Repository;
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_11ef657;
+     */
+    private void insertTf_11ef657(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_11ef657 tStructure = new Tf_11ef657();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_11ef657Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_a176820;
+     */
+    private void insertTf_a176820(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_a176820 tStructure = new Tf_a176820();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_a176820Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_418ba99;
+     */
+    private void insertTf_418ba99(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_418ba99 tStructure = new Tf_418ba99();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_418ba99Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_e14fb61;
+     */
+    private void insertTf_e14fb61(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_e14fb61 tStructure = new Tf_e14fb61();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_e14fb61Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_e18f309;
+     */
+    private void insertTf_e18f309(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_e18f309 tStructure = new Tf_e18f309();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_e18f309Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_415a5b5;
+     */
+    private void insertTf_415a5b5(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_415a5b5 tStructure = new Tf_415a5b5();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_415a5b5Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_b12220b;
+     */
+    private void insertTf_b12220b(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_b12220b tStructure = new Tf_b12220b();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_b12220bRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_51dcb50;
+     */
+    private void insertTf_51dcb50(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_51dcb50 tStructure = new Tf_51dcb50();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_51dcb50Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_41dee64;
+     */
+    private void insertTf_41dee64(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_41dee64 tStructure = new Tf_41dee64();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_41dee64Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_516d040;
+     */
+    private void insertTf_516d040(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_516d040 tStructure = new Tf_516d040();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_516d040Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c1d356e;
+     */
+    private void insertTfc1d356e(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfc1d356e tStructure = new Tfc1d356e();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfc1d356eRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_a1bbbd0;
+     */
+    private void insertTfa1bbbd0(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfa1bbbd0 tStructure = new Tfa1bbbd0();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfa1bbbd0Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_017ea0e;
+     */
+    private void insertTf017ea0e(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf017ea0e tStructure = new Tf017ea0e();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf017ea0eRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_e134017;
+     */
+    private void insertTfe134017(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfe134017 tStructure = new Tfe134017();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfe134017Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_e1f4c72;
+     */
+    private void insertTfe1f4c72(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfe1f4c72 tStructure = new Tfe1f4c72();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfe1f4c72Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c1a5f64;
+     */
+    private void insertTfc1a5f64(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfc1a5f64 tStructure = new Tfc1a5f64();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfc1a5f64Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_01f4217;
+     */
+    private void insertTf01f4217(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf01f4217 tStructure = new Tf01f4217();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf01f4217Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_41ae2b2;
+     */
+    private void insertTf41ae2b2(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf41ae2b2 tStructure = new Tf41ae2b2();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf41ae2b2Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_81e7ece;
+     */
+    private void insertTf81e7ece(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf81e7ece tStructure = new Tf81e7ece();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf81e7eceRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_f17ee32;
+     */
+    private void insertTff17ee32(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tff17ee32 tStructure = new Tff17ee32();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tff17ee32Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_fiostructure;
+     */
+    private void insertTffiostructure(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tffiostructure tStructure = new Tffiostructure();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tffiostructureRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_a17ec5c;
+     */
+    private void insertTfa17ec5c(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfa17ec5c tStructure = new Tfa17ec5c();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfa17ec5cRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c1b334d;
+     */
+    private void insertTfc1b334d(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfc1b334d tStructure = new Tfc1b334d();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfc1b334dRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_2155892;
+     */
+    private void insertTf2155892(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf2155892 tStructure = new Tf2155892();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf2155892Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_1143df2;
+     */
+    private void insertTf1143df2(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf1143df2 tStructure = new Tf1143df2();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf1143df2Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_d1ffcfd;
+     */
+    private void insertTfd1ffcfd(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfd1ffcfd tStructure = new Tfd1ffcfd();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfd1ffcfdRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_31e6165;
+     */
+    private void insertTf31e6165(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf31e6165 tStructure = new Tf31e6165();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf31e6165Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_c12cfac;
+     */
+    private void insertTfc12cfac(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfc12cfac tStructure = new Tfc12cfac();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfc12cfacRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_d1f8a37;
+     */
+    private void insertTfd1f8a37(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfd1f8a37 tStructure = new Tfd1f8a37();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfd1f8a37Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_a1b73a8;
+     */
+    private void insertTfa1b73a8(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tfa1b73a8 tStructure = new Tfa1b73a8();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tfa1b73a8Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_112b79c;
+     */
+    private void insertTf112b79c(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf112b79c tStructure = new Tf112b79c();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf112b79cRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_61741ce;
+     */
+    private void insertTF61741ce(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF61741ce tStructure = new TF61741ce();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf61741ceRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_41da707;
+     */
+    private void insertTf118f49d(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf118f49d tStructure = new Tf118f49d();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf118f49dRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_41da707;
+     */
+    private void insertTff1669da(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tff1669da tStructure = new Tff1669da();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tff1669daRepository.saveAndFlush(tStructure);
+            }
+        }
+    }
+
+    /**
+     * @param element;
+     * @param body;
+     * @desc f_41da707;
+     */
+    private void insertTF41da707(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                TF41da707 tStructure = new TF41da707();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf41da707Repository.saveAndFlush(tStructure);
+            }
+        }
+    }
 
     /**
      * @param element;

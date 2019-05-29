@@ -567,6 +567,8 @@ public class TDocumentBody implements Serializable {
     private String f_01d54f9;
     private String f_01da72c;
     private String f_412ca80;
+    private String f_810d1c5;
+    private String f_d130aca;
     private Date f_616de77;
     private Date f_017bdff;
     private Date f_01f5e51;

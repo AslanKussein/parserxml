@@ -989,6 +989,12 @@ public class ParseItem {
         } else if (element.getAttribute("name").equalsIgnoreCase("f_d133072")) {
             if (element.getFirstChild() != null)
                 body.setF_d133072(element.getFirstChild().getNodeValue());
+        }else if (element.getAttribute("name").equalsIgnoreCase("f_810d1c5")) {
+            if (element.getFirstChild() != null)
+                body.setF_810d1c5(element.getFirstChild().getNodeValue());
+        }else if (element.getAttribute("name").equalsIgnoreCase("f_d130aca")) {
+            if (element.getFirstChild() != null)
+                body.setF_d130aca(element.getFirstChild().getNodeValue());
         } else {
             if (element.getParentNode().getNodeName().equalsIgnoreCase("document")) {
                 throw new Exception("парсер добавь item " + element.getAttribute("name"));

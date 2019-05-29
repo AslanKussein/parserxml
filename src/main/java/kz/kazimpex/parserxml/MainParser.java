@@ -652,6 +652,8 @@ public class MainParser {
                                 insertTf_a176820(element, body);
                             }else if (element.getAttribute("name").equalsIgnoreCase("f_11ef657")) {
                                 insertTf_11ef657(element, body);
+                            }else if (element.getAttribute("name").equalsIgnoreCase("f_81a2a3c")) {
+                                insertTf_81a2a3c(element, body);
                             }
                         }
                     }
@@ -668,8 +670,27 @@ public class MainParser {
     Tf_a176820Repository tf_a176820Repository;
     @Autowired
     Tf_11ef657Repository tf_11ef657Repository;
+    @Autowired
+    Tf_81a2a3cRepository tf_81a2a3cRepository;
 
     /**
+     * @param element;
+     * @param body;
+     * @desc f_81a2a3c;
+     */
+    private void insertTf_81a2a3c(Element element, TDocumentBody body) {
+        NodeList list = element.getChildNodes();
+        for (int j = 0; j < list.getLength(); j++) {
+            Element main = (Element) list.item(j);
+            if (main.getFirstChild() != null) {
+                Tf_81a2a3c tStructure = new Tf_81a2a3c();
+                tStructure.setTDocumentBody(body);
+                tStructure.setStructureId(main.getAttribute("id"));
+                tStructure.setStructureValue(main.getFirstChild().getNodeValue());
+                tf_81a2a3cRepository.saveAndFlush(tStructure);
+            }
+        }
+    }/**
      * @param element;
      * @param body;
      * @desc f_11ef657;
